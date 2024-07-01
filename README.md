@@ -80,6 +80,7 @@ The backend is developed in Spring Boot and provides REST endpoints for managing
 
    ```bash
    cd boardliveSPRING
+   mvn clean package
    mvn spring-boot:run
    ```
 
