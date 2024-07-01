@@ -91,9 +91,24 @@ The backend is developed in Spring Boot and provides REST endpoints for managing
    npm start
    ```
 
-### Accessing the Application
+   
 
-Once both servers are running, the application will be available at `http://localhost:3000` for the React frontend and `http://localhost:8080` for the Spring Boot backend.
+4. **Access the Application**:
+   - Open your web browser and go to `http://localhost:3000`.
+   - You will see the BoardLive application running, where multiple users can draw simultaneously.
+   ![alt text](images/image.png)
+
+5. **Clearing the Board**:
+   - Click on the "Clear Board" button at the bottom of the page.
+   - This action sends a request to the backend to clear all drawings from the board.
+   - All users will see the board cleared instantly.
+   ![alt text](images/image-1.png)
+
+6. **Observing Real-Time Updates**:
+   - As users draw on the board, changes are instantly reflected for all connected users.
+   - The application demonstrates real-time collaborative drawing functionality.
+    
+
 
 ## Technologies Used
 
