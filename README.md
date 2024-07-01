@@ -48,7 +48,7 @@ The backend is developed in Spring Boot and provides REST endpoints for managing
 
 ## Architecture
 
-![Architecture Diagram](https://github.com/JohannBulls/BoardLive/assets/architecture-diagram.png)
+![Architecture Diagram](images/Diagrama%20en%20blanco.png)
 
 1. **User Interaction**:
    - Users interact with the application through the web interface provided by React.
