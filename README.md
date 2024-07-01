@@ -1,70 +1,111 @@
-# Getting Started with Create React App
+# BoardLive
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+BoardLive is a collaborative web application that allows multiple users to draw simultaneously on a virtual board. It utilizes React for the frontend and Spring Boot for the backend.
 
-## Available Scripts
+## Key Features
 
-In the project directory, you can run:
+- **Collaborative Drawing**: Multiple users can draw simultaneously on the same virtual board.
+- **Board Clearing**: Users can clear all drawings on the board with a dedicated button.
+- **Real-Time Updates**: Changes on the board are instantly reflected for all connected users.
 
-### `npm start`
+## Project Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Frontend (React)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The frontend is built using React and utilizes p5.js for the drawing area.
 
-### `npm test`
+#### Main Components
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **App.js**:
+   - Main component managing state for clicks and color.
+   - Includes a button to clear the board and an `ActionFetcher` component to fetch updates from the server.
 
-### `npm run build`
+2. **Board.js**:
+   - Component representing the drawing area using p5.js.
+   - Renders clicks on the board and handles drawing interactions.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **ActionFetcher.js**:
+   - Component for periodic fetching of actions from the server using `axios`.
+   - Updates clicks state in the main component (`App.js`).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Backend (Spring Boot)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The backend is developed in Spring Boot and provides REST endpoints for managing board clicks.
 
-### `npm run eject`
+#### Main Classes
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. **BoardApp.java**:
+   - Main class that initializes the Spring Boot application.
+   - Configures and launches the server to handle REST requests.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. **Controller.java**:
+   - REST controller handling board click operations.
+   - Defines endpoints for adding, retrieving, and clearing clicks.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. **ClickBoard.java**:
+   - POJO class representing a click on the board.
+   - Contains properties like coordinates (x, y), color, and timestamp.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Architecture
 
-## Learn More
+![Architecture Diagram](https://github.com/JohannBulls/BoardLive/assets/architecture-diagram.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. **User Interaction**:
+   - Users interact with the application through the web interface provided by React.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. **Request Handling**:
+   - User requests are received by the Spring Boot server, which handles them using REST controllers.
 
-### Code Splitting
+3. **Real-Time Updates**:
+   - Utilizes `axios` to send and receive data between frontend and backend, keeping the board updated for all users.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Installation and Execution
 
-### Analyzing the Bundle Size
+### Prerequisites
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Java Development Kit (JDK) 8 or higher
+- Apache Maven
+- Node.js and npm (for React frontend)
 
-### Making a Progressive Web App
+### Installation Steps
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. **Clone the Repository**:
 
-### Advanced Configuration
+   ```bash
+   git clone https://github.com/JohannBulls/BoardLive.git
+   cd BoardLive
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+2. **Compile and Run the Backend**:
 
-### Deployment
+   ```bash
+   cd boardliveSPRING
+   mvn spring-boot:run
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+3. **Compile and Run the Frontend**:
 
-### `npm run build` fails to minify
+   ```bash
+   cd boardliveREACT
+   npm install
+   npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Accessing the Application
+
+Once both servers are running, the application will be available at `http://localhost:3000` for the React frontend and `http://localhost:8080` for the Spring Boot backend.
+
+## Technologies Used
+
+- **Frontend**: React, p5.js, axios
+- **Backend**: Spring Boot, Java
+- **Tools**: Maven for dependency management
+
+## Author
+
+- Johann Amaya Lopez - *JohannBulls* - [GitHub](https://github.com/JohannBulls)
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE.txt) file for details.
+
